@@ -48,9 +48,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         if (flag) {
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            recordedAudio = RecordedAudio(title: recorder.url.lastPathComponent!, filePathUrl: recorder.url)
             
             performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         } else {
@@ -62,7 +60,6 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func recordAudio(sender: UIButton) {
-        //TODO: Actually record the user's voice
         microphoneButton.enabled = false
         recordingLabel.hidden = false
         stopRecordingButton.hidden = false
