@@ -32,6 +32,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
         super.viewWillAppear(animated)
 
         stopRecordingButton.hidden = true
+        recordingLabel.text = "Tap mic to record"
     }
     
     // MARK: - Navigation
@@ -53,7 +54,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
             performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         } else {
             println("Recording failed")
-            recordingLabel.hidden = true
+            recordingLabel.text = "Tap mic to record"
             microphoneButton.enabled = true
             stopRecordingButton.hidden = true
         }
@@ -61,7 +62,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func recordAudio(sender: UIButton) {
         microphoneButton.enabled = false
-        recordingLabel.hidden = false
+        recordingLabel.text = "recording in progress"
         stopRecordingButton.hidden = false
 
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
@@ -87,7 +88,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func stopRecording(sender: UIButton) {
         microphoneButton.enabled = true
-        recordingLabel.hidden = true
+        recordingLabel.text = "Tap mic to record"
         stopRecordingButton.hidden = true
 
         audioRecorder.stop()

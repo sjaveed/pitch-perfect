@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qvV-DE-m7S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qvV-DE-m7S">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +27,7 @@
                                     <action selector="recordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="opx-2b-BRk"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recording" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhE-5f-0dZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap mic to record" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhE-5f-0dZ">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.10196078431372549" green="0.2196078431372549" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,12 +59,12 @@
                                 <exclude reference="Hhv-T5-Smu"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="qJ8-hR-EWg"/>
-                                <exclude reference="wnr-y9-Wm7"/>
+                                <exclude reference="Mq4-X9-mTF"/>
                                 <exclude reference="2am-oQ-d6h"/>
                                 <exclude reference="yKW-DL-iRX"/>
                                 <exclude reference="lEk-ZJ-h0g"/>
-                                <exclude reference="Mq4-X9-mTF"/>
+                                <exclude reference="qJ8-hR-EWg"/>
+                                <exclude reference="wnr-y9-Wm7"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -73,12 +74,12 @@
                                 <include reference="Hhv-T5-Smu"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="qJ8-hR-EWg"/>
-                                <include reference="wnr-y9-Wm7"/>
+                                <include reference="Mq4-X9-mTF"/>
                                 <include reference="2am-oQ-d6h"/>
                                 <include reference="yKW-DL-iRX"/>
                                 <include reference="lEk-ZJ-h0g"/>
-                                <include reference="Mq4-X9-mTF"/>
+                                <include reference="qJ8-hR-EWg"/>
+                                <include reference="wnr-y9-Wm7"/>
                             </mask>
                         </variation>
                     </view>
@@ -103,6 +104,7 @@
                         <viewControllerLayoutGuide type="bottom" id="gF3-Ra-w4t"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MdF-Jg-jpc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0V-hT-0u0">
@@ -128,9 +130,6 @@
                                 <state key="normal" image="stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="175" y="530" width="50" height="50"/>
-                                </variation>
                                 <connections>
                                     <action selector="stopPlayback:" destination="On4-qn-CUY" eventType="touchUpInside" id="Czx-Mc-a6C"/>
                                 </connections>
@@ -157,11 +156,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="iEm-Iw-eDo" secondAttribute="trailing" constant="38" id="BJ5-nM-F5o"/>
+                            <constraint firstAttribute="centerX" secondItem="JJs-jb-DTb" secondAttribute="centerX" id="OwE-1j-sSt"/>
                             <constraint firstItem="f0V-hT-0u0" firstAttribute="leading" secondItem="MdF-Jg-jpc" secondAttribute="leadingMargin" constant="38" id="Smq-o7-9v7"/>
                             <constraint firstItem="L8o-pi-Kyx" firstAttribute="top" secondItem="f0V-hT-0u0" secondAttribute="bottom" constant="74" id="X7a-JR-8nm"/>
                             <constraint firstItem="f0V-hT-0u0" firstAttribute="top" secondItem="IJ7-2V-JtY" secondAttribute="bottom" constant="53" id="Xx2-iy-cKU"/>
                             <constraint firstItem="4WS-Y6-Kyl" firstAttribute="top" secondItem="iEm-Iw-eDo" secondAttribute="bottom" constant="74" id="iIS-me-Czt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4WS-Y6-Kyl" secondAttribute="trailing" constant="38" id="j9l-Pg-dqb"/>
+                            <constraint firstItem="gF3-Ra-w4t" firstAttribute="top" secondItem="JJs-jb-DTb" secondAttribute="bottom" constant="20" id="rhO-xP-cHq"/>
                             <constraint firstItem="iEm-Iw-eDo" firstAttribute="top" secondItem="IJ7-2V-JtY" secondAttribute="bottom" constant="53" id="xsL-yI-B6X"/>
                             <constraint firstItem="L8o-pi-Kyx" firstAttribute="leading" secondItem="MdF-Jg-jpc" secondAttribute="leadingMargin" constant="38" id="zfb-Ih-IwY"/>
                         </constraints>
@@ -182,6 +183,8 @@
                                 <exclude reference="zfb-Ih-IwY"/>
                                 <exclude reference="iIS-me-Czt"/>
                                 <exclude reference="j9l-Pg-dqb"/>
+                                <exclude reference="OwE-1j-sSt"/>
+                                <exclude reference="rhO-xP-cHq"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -201,6 +204,8 @@
                                 <include reference="zfb-Ih-IwY"/>
                                 <include reference="iIS-me-Czt"/>
                                 <include reference="j9l-Pg-dqb"/>
+                                <include reference="OwE-1j-sSt"/>
+                                <include reference="rhO-xP-cHq"/>
                             </mask>
                         </variation>
                     </view>
