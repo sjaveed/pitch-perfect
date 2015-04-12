@@ -17,6 +17,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
 
     var audioRecorder:AVAudioRecorder!
     var recordedAudio:RecordedAudio!
+    var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
         super.viewWillAppear(animated)
 
         stopRecordingButton.hidden = true
+        microphoneButton.alpha = CGFloat(1.0)
         recordingLabel.text = "Tap mic to record"
     }
     
@@ -47,6 +49,17 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    func animateMic() {
+        if (audioRecorder != nil && audioRecorder.recording) {
+            audioRecorder.updateMeters()
+            let audioLevel = audioRecorder.averagePowerForChannel(0)
+            let opacity = audioLevel > 0 ? 1.0 : (audioLevel < -80.0 ? 0.5 : 0.5 + (audioLevel + 80.0) / 80.0)
+
+            println(format: "audioLevel: %f, opacity: %f", audioLevel, opacity)
+            microphoneButton.alpha = CGFloat(opacity)
+        }
+    }
+    
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         if (flag) {
             recordedAudio = RecordedAudio(title: recorder.url.lastPathComponent!, filePathUrl: recorder.url)
@@ -55,9 +68,12 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
         } else {
             println("Recording failed")
             recordingLabel.text = "Tap mic to record"
+            microphoneButton.alpha = CGFloat(1.0)
             microphoneButton.enabled = true
             stopRecordingButton.hidden = true
         }
+        
+        timer?.invalidate()
     }
     
     @IBAction func recordAudio(sender: UIButton) {
@@ -84,6 +100,8 @@ class SoundRecorderViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
+
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "animateMic", userInfo: nil, repeats: true)
     }
     
     @IBAction func stopRecording(sender: UIButton) {
